@@ -1,26 +1,38 @@
 # Central de Projetos · Full Solutions
 
-Site público com todos os projetos, cada um com link para o site e, quando o projeto é público, para o repositório.
-
 **Site:** https://fau009.github.io/
 
-As regras e o histórico de decisões ficam no repositório privado `central-de-projetos`. Este repositório guarda só o site.
+Este repositório mantém no ar o site da Central de Projetos. O site é a **forma oficial de apresentar e publicar os projetos** da Full Solutions: todo projeto novo ganha um card aqui assim que é criado.
+
+As regras de trabalho e o histórico de decisões ficam no repositório privado `central-de-projetos`. Este repositório guarda só o site, que é público.
+
+## Como funciona
+
+1. Um projeto novo é criado no próprio repositório, seguindo as regras da `central-de-projetos`.
+2. Ele é registrado no `projetos.md` da `central-de-projetos`.
+3. Ele ganha um card neste site, numa entrada em `projetos.js`.
+
+## Regra para projetos privados
+
+Projeto privado **não tem nenhum link publicado** neste site: nem do site, nem do repositório. O card mostra só o ícone, a categoria, a descrição e a data de criação, com o aviso "Projeto privado, sem links públicos".
+
+No `projetos.js`, use `privado: true` com `site: null` e `repo: null`. Mesmo que algum link seja preenchido por engano, a página não o exibe.
 
 ## O que tem no site
 
 - Card de apresentação no topo, com a definição da Central e os números gerais.
 - Busca por nome e filtro por categoria: Utilidade, Ferramenta, Entretenimento, Informação, Esporte e Social. O filtro também funciona por link, por exemplo `https://fau009.github.io/#entretenimento`.
 - Ordenação por mais recentes, mais antigos ou nome.
-- Um card por projeto, com ícone, categoria, visibilidade, descrição, data de criação, botão **Abrir site** e botão **Repositório** (ou o aviso "Repositório privado").
+- Um card por projeto, com ícone, categoria, visibilidade, descrição e data de criação. Projetos públicos também trazem os botões **Abrir site** e **Repositório**.
 - Tema claro e escuro automáticos, seguindo o sistema. Funciona no celular.
 
-## Como incluir um projeto novo
+## Como incluir um projeto
 
 1. Abra `projetos.js`.
-2. Copie um bloco de projeto e preencha `nome`, `descricao`, `categoria`, `criadoEm` (AAAA-MM-DD), `site`, `repo` (use `null` se o repositório for privado) e `icone`.
-3. O ícone é um desenho em SVG numa área de 48×48, só com traços (`<path>`, `<circle>`, `<rect>`). Use `class="fill"` para preencher uma forma.
+2. Copie um bloco de projeto e preencha `nome`, `descricao`, `categoria`, `criadoEm` (AAAA-MM-DD), `privado`, `site`, `repo` e `icone`.
+3. O ícone é um desenho minimalista em SVG numa área de 48×48, só com traços (`<path>`, `<circle>`, `<rect>`). Use `class="fill"` para preencher uma forma.
 4. Para criar uma categoria nova, inclua em `CATEGORIAS` no mesmo arquivo.
-5. Faça commit e push na `main`, e envie também para a `gh-pages`: `git push origin main:gh-pages`.
+5. Faça commit e push na `main` e envie também para a `gh-pages`: `git push origin main:gh-pages`.
 
 Os números do topo e os contadores dos filtros se atualizam sozinhos.
 
@@ -30,4 +42,4 @@ Os números do topo e os contadores dos filtros se atualizam sozinhos.
 - `projetos.js`: lista de projetos e categorias.
 - `marca/`: logotipo e símbolo da Full Solutions com fundo transparente, favicon e imagem de compartilhamento.
 
-HTML, CSS e JS puros, sem dependências. Publicado pelo GitHub Pages a partir da branch `gh-pages`, que é um espelho da `main`.
+HTML, CSS e JS puros, sem dependências. Publicado pelo GitHub Pages.

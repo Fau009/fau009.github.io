@@ -184,7 +184,7 @@ footer { border-top: 1.5px solid var(--line); }
     <div>
       <p class="eyebrow">Central de Projetos</p>
       <h1 id="titulo">Todos os projetos em um só lugar.</h1>
-      <p class="lead">Cada projeto nasce com o próprio repositório no GitHub, que é a única fonte de verdade: nenhum código fica guardado em máquina. Os sites ficam no ar pelo GitHub Pages ou pela Vercel. Aqui você encontra cada um deles, com o link do site e, quando o projeto é público, o link do repositório.</p>
+      <p class="lead">Esta é a vitrine oficial dos projetos da Full Solutions. Todo projeto nasce com o próprio repositório no GitHub, que é a única fonte de verdade, e ganha um card aqui assim que é criado. Os projetos públicos trazem o link do site e do repositório. Os privados aparecem só com a apresentação, sem links.</p>
       <ul class="facts" id="facts"></ul>
     </div>
   </section>
@@ -234,13 +234,13 @@ footer { border-top: 1.5px solid var(--line); }
   if (fromHash && CATS.some(c => c.id === fromHash)) state.cat = fromHash;
 
   // Números do topo
-  const publicos = ALL.filter(p => p.repo).length;
-  const noAr = ALL.filter(p => p.site).length;
+  const publicos = ALL.filter(p => !p.privado).length;
+  const privados = ALL.length - publicos;
   const usadas = new Set(ALL.map(p => p.categoria)).size;
   $('facts').innerHTML = [
     [ALL.length, ALL.length === 1 ? 'projeto' : 'projetos'],
-    [noAr, noAr === 1 ? 'site no ar' : 'sites no ar'],
-    [publicos, publicos === 1 ? 'repositório público' : 'repositórios públicos'],
+    [publicos, publicos === 1 ? 'público' : 'públicos'],
+    [privados, privados === 1 ? 'privado' : 'privados'],
     [usadas, 'categorias'],
   ].map(([n, t]) => `<li><b>${n}</b>${t}</li>`).join('');
   const ultima = ALL.map(p => p.criadoEm).sort().pop();
@@ -259,25 +259,28 @@ footer { border-top: 1.5px solid var(--line); }
   }
 
   function cardHTML(p) {
-    const site = p.site
-      ? `<a class="btn solid" href="${esc(p.site)}" target="_blank" rel="noopener">Abrir site ${ICON_OUT}</a>`
-      : `<span class="btn off">Site em breve</span>`;
-    const repo = p.repo
-      ? `<a class="btn line" href="${esc(p.repo)}" target="_blank" rel="noopener">Repositório ${ICON_OUT}</a>`
-      : `<span class="btn off">${ICON_LOCK} Repositório privado</span>`;
+    // Projeto privado: nenhum link é exibido, mesmo que algum esteja preenchido.
+    const actions = p.privado
+      ? `<span class="btn off">${ICON_LOCK} Projeto privado, sem links públicos</span>`
+      : (p.site
+          ? `<a class="btn solid" href="${esc(p.site)}" target="_blank" rel="noopener">Abrir site ${ICON_OUT}</a>`
+          : `<span class="btn off">Site em breve</span>`) +
+        (p.repo
+          ? `<a class="btn line" href="${esc(p.repo)}" target="_blank" rel="noopener">Repositório ${ICON_OUT}</a>`
+          : '');
     return `<li class="card">
       <div class="card-head">
         <span class="tile" aria-hidden="true"><svg viewBox="0 0 48 48">${p.icone || ''}</svg></span>
         <span class="labels">
           <span class="cat">${esc(catName(p.categoria))}</span>
-          <span class="vis">${p.repo ? ICON_GLOBE + ' Público' : ICON_LOCK + ' Privado'}</span>
+          <span class="vis">${p.privado ? ICON_LOCK + ' Privado' : ICON_GLOBE + ' Público'}</span>
         </span>
       </div>
       <h2>${esc(p.nome)}</h2>
       <p>${esc(p.descricao)}</p>
       <div class="card-foot">
         <span class="date">Criado em <b>${fmtDate(p.criadoEm)}</b></span>
-        <div class="actions">${site}${repo}</div>
+        <div class="actions">${actions}</div>
       </div>
     </li>`;
   }
