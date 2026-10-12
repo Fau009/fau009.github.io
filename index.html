@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Central de Projetos</title>
+<meta name="description" content="Central de Projetos da Full Solutions: todos os projetos em um só lugar, com link para o site e para o repositório de cada um.">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c0c0c" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Central de Projetos · Full Solutions">
+<meta property="og:description" content="Todos os projetos em um só lugar, com link para o site e para o repositório de cada um.">
+<meta property="og:image" content="https://fau009.github.io/marca/compartilhar.png">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="marca/favicon.png">
+<link rel="apple-touch-icon" href="marca/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700;800&family=Josefin+Slab:wght@400;600&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: cabeçalho com a marca; card-manifesto invertido no topo; barra de busca e filtros; grade de cards de projeto. Preto e branco da marca Full Solutions, nos dois temas. */
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --soft: #f3f3f1;
+  --fg: #0d0d0d;
+  --muted: #62625e;
+  --line: #e2e2de;
+  --inv-bg: #0d0d0d;
+  --inv-fg: #ffffff;
+  --inv-muted: #b4b4ae;
+  --display: "League Spartan", "Arial Black", system-ui, sans-serif;
+  --slab: "Josefin Slab", Georgia, serif;
+  --body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius: 18px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c0c0c; --surface: #131313; --soft: #1b1b1a; --fg: #f4f4f1; --muted: #a2a29c; --line: #2a2a28;
+    --inv-bg: #f4f4f1; --inv-fg: #0c0c0c; --inv-muted: #55554f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c0c0c; --surface: #131313; --soft: #1b1b1a; --fg: #f4f4f1; --muted: #a2a29c; --line: #2a2a28;
+  --inv-bg: #f4f4f1; --inv-fg: #0c0c0c; --inv-muted: #55554f; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 15px; line-height: 1.55;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+.wrap { max-width: 1120px; margin-inline: auto; padding-inline: 20px; }
+@media (max-width: 480px) { .wrap { padding-inline: 16px; } }
+
+/* Marca aplicada como máscara: a cor acompanha o tema */
+.brand-mark { display: block; background: currentColor; -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; }
+
+/* Cabeçalho */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px 8px; }
+.logo { --src: url("marca/logo-full-solutions.png"); width: 172px; aspect-ratio: 407 / 233; color: var(--fg); }
+.logo-link { display: block; text-decoration: none; }
+.gh {
+  display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600; font-size: .85rem;
+  padding: .55rem .9rem; border: 1.5px solid var(--fg); border-radius: 999px; transition: background .2s, color .2s;
+}
+.gh:hover { background: var(--fg); color: var(--bg); }
+.gh svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* Card de definição */
+.manifest {
+  margin-block: 18px 34px; background: var(--inv-bg); color: var(--inv-fg); border-radius: 26px;
+  padding: clamp(24px, 5vw, 48px); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(20px, 5vw, 56px); align-items: center;
+}
+.manifest .symbol { --src: url("marca/simbolo.png"); width: clamp(84px, 14vw, 150px); aspect-ratio: 224 / 256; color: var(--inv-fg); }
+.eyebrow { font-family: var(--slab); font-weight: 400; font-size: .82rem; letter-spacing: .32em; text-transform: uppercase; margin: 0 0 12px; }
+.manifest .eyebrow { color: var(--inv-muted); }
+.manifest h1 { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 5.2vw, 3.4rem); line-height: .98; letter-spacing: -.02em; margin: 0 0 16px; text-wrap: balance; }
+.manifest p.lead { margin: 0; max-width: 62ch; color: var(--inv-fg); opacity: .86; font-size: 1rem; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 22px 0 0; padding: 0; list-style: none; }
+.facts li { display: flex; align-items: baseline; gap: 7px; font-size: .85rem; color: var(--inv-muted); }
+.facts b { font-family: var(--display); font-weight: 700; font-size: 1.45rem; color: var(--inv-fg); font-variant-numeric: tabular-nums; }
+@media (max-width: 560px) {
+  .manifest { grid-template-columns: 1fr; }
+  .manifest .symbol { width: 72px; }
+}
+
+/* Busca e filtros */
+.tools { display: flex; flex-direction: column; gap: 14px; margin-bottom: 22px; }
+.tools-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.search { position: relative; flex: 1 1 260px; min-width: 0; }
+.search svg { position: absolute; left: 14px; top: 50%; translate: 0 -50%; width: 18px; height: 18px; stroke: var(--muted); fill: none; stroke-width: 2; pointer-events: none; }
+.search input {
+  width: 100%; font: inherit; font-size: .95rem; color: var(--fg); background: var(--surface);
+  border: 1.5px solid var(--line); border-radius: 999px; padding: .7rem 1rem .7rem 2.6rem; transition: border-color .2s;
+}
+.search input:focus { border-color: var(--fg); outline: none; }
+.search input::placeholder { color: var(--muted); }
+.sort { position: relative; }
+.sort select {
+  appearance: none; font: inherit; font-size: .88rem; font-weight: 600; color: var(--fg); background: var(--surface);
+  border: 1.5px solid var(--line); border-radius: 999px; padding: .7rem 2.3rem .7rem 1rem; cursor: pointer;
+}
+.sort::after { content: ""; position: absolute; right: 16px; top: 50%; width: 7px; height: 7px; border-right: 2px solid var(--fg); border-bottom: 2px solid var(--fg); translate: 0 -70%; rotate: 45deg; pointer-events: none; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  appearance: none; cursor: pointer; font: inherit; font-size: .86rem; font-weight: 600; color: var(--fg);
+  background: transparent; border: 1.5px solid var(--line); border-radius: 999px; padding: .42rem .85rem;
+  display: inline-flex; align-items: center; gap: 7px; transition: border-color .2s, background .2s, color .2s;
+}
+.chip:hover { border-color: var(--fg); }
+.chip .n { font-size: .74rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.chip[aria-pressed="true"] .n { color: inherit; opacity: .7; }
+.count { font-size: .85rem; color: var(--muted); margin: 0; }
+
+/* Cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 18px; padding: 0; margin: 0 0 56px; list-style: none; }
+.card {
+  background: var(--surface); border: 1.5px solid var(--line); border-radius: var(--radius);
+  padding: 22px; display: flex; flex-direction: column; gap: 14px; min-width: 0; transition: border-color .2s, translate .2s;
+}
+.card:hover { border-color: var(--fg); translate: 0 -2px; }
+.card-head { display: flex; align-items: center; gap: 14px; }
+.tile {
+  width: 60px; height: 60px; flex: none; border-radius: 16px; border: 1.5px solid var(--fg);
+  display: grid; place-items: center; transition: background .2s, color .2s;
+}
+.card:hover .tile { background: var(--fg); color: var(--bg); }
+.tile svg { width: 34px; height: 34px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.tile svg .fill { fill: currentColor; stroke: none; }
+.labels { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.cat { font-family: var(--slab); font-weight: 600; font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; }
+.vis { display: inline-flex; align-items: center; gap: 5px; font-size: .76rem; color: var(--muted); }
+.vis svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; }
+.card h2 { font-family: var(--display); font-weight: 700; font-size: 1.45rem; line-height: 1.1; letter-spacing: -.01em; margin: 0; }
+.card p { margin: 0; color: var(--muted); font-size: .92rem; flex: 1; }
+.card-foot { display: flex; flex-direction: column; gap: 12px; padding-top: 14px; border-top: 1.5px solid var(--line); }
+.date { font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.date b { color: var(--fg); font-weight: 600; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 700; font-size: .84rem;
+  padding: .55rem .95rem; border-radius: 999px; border: 1.5px solid var(--fg); transition: background .2s, color .2s, opacity .2s;
+}
+.btn svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.btn.solid { background: var(--fg); color: var(--bg); }
+.btn.solid:hover { opacity: .82; }
+.btn.line:hover { background: var(--fg); color: var(--bg); }
+.btn.off { border-style: dashed; border-color: var(--line); color: var(--muted); font-weight: 600; cursor: default; }
+
+.empty { grid-column: 1 / -1; text-align: center; padding: 48px 16px; border: 1.5px dashed var(--line); border-radius: var(--radius); color: var(--muted); }
+.empty strong { display: block; font-family: var(--display); font-size: 1.3rem; color: var(--fg); margin-bottom: 4px; }
+.empty button { margin-top: 14px; font: inherit; font-weight: 700; font-size: .85rem; color: var(--fg); background: none; border: 1.5px solid var(--fg); border-radius: 999px; padding: .5rem .95rem; cursor: pointer; }
+
+/* Rodapé */
+footer { border-top: 1.5px solid var(--line); }
+.foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding-block: 22px 28px; }
+.foot-brand { display: flex; align-items: center; gap: 12px; }
+.foot-brand .brand-mark { --src: url("marca/simbolo.png"); width: 26px; aspect-ratio: 224 / 256; color: var(--fg); }
+.foot-brand span { font-family: var(--slab); font-size: .78rem; letter-spacing: .28em; text-transform: uppercase; }
+.foot small { color: var(--muted); font-size: .8rem; }
+
+@media (prefers-reduced-motion: reduce) { .card, .card:hover { transition: none; translate: none; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="logo-link" href="./" aria-label="Full Solutions — Central de Projetos"><span class="brand-mark logo" role="img" aria-label="Full Solutions — Make your future yourself"></span></a>
+    <a class="gh" href="https://github.com/Fau009" target="_blank" rel="noopener">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      GitHub
+    </a>
+  </header>
+
+  <section class="manifest" aria-labelledby="titulo">
+    <span class="brand-mark symbol" aria-hidden="true"></span>
+    <div>
+      <p class="eyebrow">Central de Projetos</p>
+      <h1 id="titulo">Todos os projetos em um só lugar.</h1>
+      <p class="lead">Cada projeto nasce com o próprio repositório no GitHub, que é a única fonte de verdade: nenhum código fica guardado em máquina. Os sites ficam no ar pelo GitHub Pages ou pela Vercel. Aqui você encontra cada um deles, com o link do site e, quando o projeto é público, o link do repositório.</p>
+      <ul class="facts" id="facts"></ul>
+    </div>
+  </section>
+
+  <section class="tools" aria-label="Buscar e filtrar projetos">
+    <div class="tools-row">
+      <label class="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4" stroke-linecap="round"/></svg>
+        <input id="q" type="search" placeholder="Buscar projeto pelo nome" autocomplete="off" aria-label="Buscar projeto pelo nome">
+      </label>
+      <label class="sort">
+        <select id="sort" aria-label="Ordenar projetos">
+          <option value="recentes">Mais recentes</option>
+          <option value="antigos">Mais antigos</option>
+          <option value="nome">Nome (A–Z)</option>
+        </select>
+      </label>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Categorias"></div>
+    <p class="count" id="count" aria-live="polite"></p>
+  </section>
+
+  <ul class="grid" id="grid"></ul>
+</div>
+
+<footer>
+  <div class="wrap foot">
+    <div class="foot-brand"><span class="brand-mark" aria-hidden="true"></span><span>Make your future yourself</span></div>
+    <small id="updated"></small>
+  </div>
+</footer>
+
+<script src="projetos.js"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const CATS = window.CATEGORIAS || [];
+  const ALL = (window.PROJETOS || []).slice();
+  const catName = id => (CATS.find(c => c.id === id) || {}).nome || id;
+  const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+  const MESES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+  const fmtDate = iso => { const [y, m, d] = iso.split('-'); return `${+d} ${MESES[+m - 1]} ${y}`; };
+
+  const state = { cat: 'todos', q: '', sort: 'recentes' };
+  const fromHash = location.hash.slice(1);
+  if (fromHash && CATS.some(c => c.id === fromHash)) state.cat = fromHash;
+
+  // Números do topo
+  const publicos = ALL.filter(p => p.repo).length;
+  const noAr = ALL.filter(p => p.site).length;
+  const usadas = new Set(ALL.map(p => p.categoria)).size;
+  $('facts').innerHTML = [
+    [ALL.length, ALL.length === 1 ? 'projeto' : 'projetos'],
+    [noAr, noAr === 1 ? 'site no ar' : 'sites no ar'],
+    [publicos, publicos === 1 ? 'repositório público' : 'repositórios públicos'],
+    [usadas, 'categorias'],
+  ].map(([n, t]) => `<li><b>${n}</b>${t}</li>`).join('');
+  const ultima = ALL.map(p => p.criadoEm).sort().pop();
+  if (ultima) $('updated').textContent = `Projeto mais recente: ${fmtDate(ultima)}`;
+
+  const ICON_LOCK = '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>';
+  const ICON_GLOBE = '<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2c1.8 2 1.8 10 0 12M8 2c-1.8 2-1.8 10 0 12"/></svg>';
+  const ICON_OUT = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12"/></svg>';
+
+  function renderChips() {
+    const counts = Object.fromEntries(CATS.map(c => [c.id, 0]));
+    ALL.forEach(p => counts[p.categoria] = (counts[p.categoria] || 0) + 1);
+    const chips = [{ id: 'todos', nome: 'Todos', n: ALL.length }, ...CATS.map(c => ({ ...c, n: counts[c.id] || 0 }))];
+    $('chips').innerHTML = chips.map(c =>
+      `<button class="chip" data-cat="${c.id}" aria-pressed="${state.cat === c.id}">${esc(c.nome)}<span class="n">${c.n}</span></button>`).join('');
+  }
+
+  function cardHTML(p) {
+    const site = p.site
+      ? `<a class="btn solid" href="${esc(p.site)}" target="_blank" rel="noopener">Abrir site ${ICON_OUT}</a>`
+      : `<span class="btn off">Site em breve</span>`;
+    const repo = p.repo
+      ? `<a class="btn line" href="${esc(p.repo)}" target="_blank" rel="noopener">Repositório ${ICON_OUT}</a>`
+      : `<span class="btn off">${ICON_LOCK} Repositório privado</span>`;
+    return `<li class="card">
+      <div class="card-head">
+        <span class="tile" aria-hidden="true"><svg viewBox="0 0 48 48">${p.icone || ''}</svg></span>
+        <span class="labels">
+          <span class="cat">${esc(catName(p.categoria))}</span>
+          <span class="vis">${p.repo ? ICON_GLOBE + ' Público' : ICON_LOCK + ' Privado'}</span>
+        </span>
+      </div>
+      <h2>${esc(p.nome)}</h2>
+      <p>${esc(p.descricao)}</p>
+      <div class="card-foot">
+        <span class="date">Criado em <b>${fmtDate(p.criadoEm)}</b></span>
+        <div class="actions">${site}${repo}</div>
+      </div>
+    </li>`;
+  }
+
+  function render() {
+    const q = norm(state.q.trim());
+    let list = ALL.filter(p =>
+      (state.cat === 'todos' || p.categoria === state.cat) &&
+      (!q || norm(p.nome).includes(q) || norm(p.descricao).includes(q)));
+    list.sort(state.sort === 'nome' ? (a, b) => a.nome.localeCompare(b.nome, 'pt-BR')
+      : state.sort === 'antigos' ? (a, b) => a.criadoEm.localeCompare(b.criadoEm) || a.nome.localeCompare(b.nome, 'pt-BR')
+      : (a, b) => b.criadoEm.localeCompare(a.criadoEm) || ALL.indexOf(a) - ALL.indexOf(b));
+    $('grid').innerHTML = list.length ? list.map(cardHTML).join('')
+      : `<li class="empty"><strong>Nenhum projeto encontrado</strong>Tente outro nome ou outra categoria.<br><button id="reset">Limpar filtros</button></li>`;
+    const filtrando = state.cat !== 'todos' || q;
+    $('count').textContent = filtrando
+      ? `${list.length} de ${ALL.length} projetos${state.cat !== 'todos' ? ` em ${catName(state.cat)}` : ''}${q ? ` para “${state.q.trim()}”` : ''}`
+      : `${ALL.length} projetos`;
+    const r = $('reset'); if (r) r.onclick = () => { state.cat = 'todos'; state.q = ''; $('q').value = ''; sync(); };
+  }
+
+  function sync() {
+    renderChips(); render();
+    const h = state.cat === 'todos' ? '' : '#' + state.cat;
+    if (location.hash !== h) history.replaceState(null, '', h || location.pathname + location.search);
+  }
+
+  $('chips').addEventListener('click', e => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    state.cat = b.dataset.cat; sync();
+  });
+  $('q').addEventListener('input', e => { state.q = e.target.value; render(); });
+  $('sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
+  window.addEventListener('hashchange', () => {
+    const h = location.hash.slice(1); state.cat = CATS.some(c => c.id === h) ? h : 'todos'; renderChips(); render();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>
