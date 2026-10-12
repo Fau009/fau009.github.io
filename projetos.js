@@ -24,6 +24,16 @@ window.CATEGORIAS = [
 
 window.PROJETOS = [
   {
+    nome: "A Resistência",
+    descricao: "O clássico jogo de blefe e dedução social para 5 a 10 pessoas, jogado passando um único celular: identidades secretas, votação, missões e placar sempre à vista. Tem modo clássico e modo simples.",
+    categoria: "entretenimento",
+    criadoEm: "2026-10-12",
+    privado: true,
+    site: "https://fau009.github.io/a-resistencia-game/",
+    repo: null,
+    icone: '<path d="M4 24s7.5-12 20-12 20 12 20 12-7.5 12-20 12S4 24 4 24Z"/><circle cx="24" cy="24" r="5.5"/><path d="M8 40 40 8"/>'
+  },
+  {
     nome: "Rouba Pino",
     descricao: "Jogo de mesa para 2 a 4 jogadores no mesmo aparelho. Role o dado, roube pinos dos outros e resgate os seus. Quem ficar sem pinos sai.",
     categoria: "entretenimento",
