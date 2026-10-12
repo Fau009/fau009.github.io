@@ -163,6 +163,8 @@ footer { border-top: 1.5px solid var(--line); }
 
 @media (prefers-reduced-motion: reduce) { .card, .card:hover { transition: none; translate: none; } }
 </style>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
 </head>
 <body>
 
@@ -211,6 +213,7 @@ footer { border-top: 1.5px solid var(--line); }
   <div class="wrap foot">
     <div class="foot-brand"><span class="brand-mark" aria-hidden="true"></span><span>Make your future yourself</span></div>
     <small id="updated"></small>
+    <span class="app-links" data-app-links data-sem-central style="margin:0"></span>
   </div>
 </footer>
 
@@ -323,5 +326,6 @@ footer { border-top: 1.5px solid var(--line); }
   sync();
 })();
 </script>
+<script src="pwa.js" defer></script>
 </body>
 </html>
