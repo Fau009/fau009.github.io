@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700;800&family=Josefin+Slab:wght@400;600&family=Manrope:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: cabeçalho com a marca; card-manifesto invertido no topo; barra de busca e filtros; grade de cards de projeto. Preto e branco da marca Full Solutions, nos dois temas. */
+/* Layout: cabeçalho com a marca; card de apresentação invertido no topo (o símbolo da marca aparece só no logotipo); barra de busca e filtros; grade de cards de projeto. Preto e branco da marca Full Solutions, nos dois temas. */
 :root {
   --bg: #ffffff;
   --surface: #ffffff;
@@ -74,20 +74,16 @@ a { color: inherit; }
 /* Card de definição */
 .manifest {
   margin-block: 18px 34px; background: var(--inv-bg); color: var(--inv-fg); border-radius: 26px;
-  padding: clamp(24px, 5vw, 48px); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(20px, 5vw, 56px); align-items: center;
+  padding: clamp(24px, 5vw, 56px);
 }
-.manifest .symbol { --src: url("marca/simbolo.png"); width: clamp(84px, 14vw, 150px); aspect-ratio: 224 / 256; color: var(--inv-fg); }
 .eyebrow { font-family: var(--slab); font-weight: 400; font-size: .82rem; letter-spacing: .32em; text-transform: uppercase; margin: 0 0 12px; }
 .manifest .eyebrow { color: var(--inv-muted); }
 .manifest h1 { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 5.2vw, 3.4rem); line-height: .98; letter-spacing: -.02em; margin: 0 0 16px; text-wrap: balance; }
-.manifest p.lead { margin: 0; max-width: 62ch; color: var(--inv-fg); opacity: .86; font-size: 1rem; }
+.manifest p.lead { margin: 0 0 12px; max-width: 68ch; color: var(--inv-fg); opacity: .86; font-size: 1.02rem; }
+.manifest p.lead.strong { opacity: 1; font-weight: 600; margin-bottom: 0; }
 .facts { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 22px 0 0; padding: 0; list-style: none; }
 .facts li { display: flex; align-items: baseline; gap: 7px; font-size: .85rem; color: var(--inv-muted); }
 .facts b { font-family: var(--display); font-weight: 700; font-size: 1.45rem; color: var(--inv-fg); font-variant-numeric: tabular-nums; }
-@media (max-width: 560px) {
-  .manifest { grid-template-columns: 1fr; }
-  .manifest .symbol { width: 72px; }
-}
 
 /* Busca e filtros */
 .tools { display: flex; flex-direction: column; gap: 14px; margin-bottom: 22px; }
@@ -161,7 +157,6 @@ a { color: inherit; }
 footer { border-top: 1.5px solid var(--line); }
 .foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding-block: 22px 28px; }
 .foot-brand { display: flex; align-items: center; gap: 12px; }
-.foot-brand .brand-mark { --src: url("marca/simbolo.png"); width: 26px; aspect-ratio: 224 / 256; color: var(--fg); }
 .foot-brand span { font-family: var(--slab); font-size: .78rem; letter-spacing: .28em; text-transform: uppercase; }
 .foot small { color: var(--muted); font-size: .8rem; }
 
@@ -180,11 +175,12 @@ footer { border-top: 1.5px solid var(--line); }
   </header>
 
   <section class="manifest" aria-labelledby="titulo">
-    <span class="brand-mark symbol" aria-hidden="true"></span>
     <div>
       <p class="eyebrow">Central de Projetos</p>
       <h1 id="titulo">Todos os projetos em um só lugar.</h1>
-      <p class="lead">Esta é a vitrine oficial dos projetos da Full Solutions. Todo projeto nasce com o próprio repositório no GitHub, que é a única fonte de verdade, e ganha um card aqui assim que é criado. Os projetos públicos trazem o link do site e do repositório. Os privados aparecem só com a apresentação, sem links.</p>
+      <p class="lead">Este espaço nasceu da vontade de transformar ideias em projetos e compartilhar um pouco do que a tecnologia nos permite criar. Aqui você encontrará experimentos, ferramentas, soluções e pequenas ideias que saíram do papel, algumas por curiosidade, outras para resolver problemas do dia a dia.</p>
+      <p class="lead">Não é sobre apresentar um portfólio perfeito (nem é a minha intenção kkk), mas sobre explorar possibilidades, aprender pelo caminho e compartilhar descobertas com uma comunidade que, assim como eu, gosta de tecnologia e acredita no poder de criar.</p>
+      <p class="lead strong">Fique à vontade para explorar, testar, contribuir e se inspirar. Afinal, boas ideias ficam ainda melhores quando são compartilhadas. 🤓</p>
       <ul class="facts" id="facts"></ul>
     </div>
   </section>
@@ -212,7 +208,7 @@ footer { border-top: 1.5px solid var(--line); }
 
 <footer>
   <div class="wrap foot">
-    <div class="foot-brand"><span class="brand-mark" aria-hidden="true"></span><span>Make your future yourself</span></div>
+    <div class="foot-brand"><span>Full Solutions · Make your future yourself</span></div>
     <small id="updated"></small>
   </div>
 </footer>
@@ -259,15 +255,15 @@ footer { border-top: 1.5px solid var(--line); }
   }
 
   function cardHTML(p) {
-    // Projeto privado: nenhum link é exibido, mesmo que algum esteja preenchido.
-    const actions = p.privado
-      ? `<span class="btn off">${ICON_LOCK} Projeto privado, sem links públicos</span>`
-      : (p.site
-          ? `<a class="btn solid" href="${esc(p.site)}" target="_blank" rel="noopener">Abrir site ${ICON_OUT}</a>`
-          : `<span class="btn off">Site em breve</span>`) +
-        (p.repo
-          ? `<a class="btn line" href="${esc(p.repo)}" target="_blank" rel="noopener">Repositório ${ICON_OUT}</a>`
-          : '');
+    // Projeto privado: o link do repositório nunca é exibido, mesmo que esteja preenchido.
+    // O link do site aparece normalmente quando existe.
+    const site = p.site
+      ? `<a class="btn solid" href="${esc(p.site)}" target="_blank" rel="noopener">Abrir site ${ICON_OUT}</a>`
+      : `<span class="btn off">Site em breve</span>`;
+    const repo = p.privado
+      ? `<span class="btn off">${ICON_LOCK} Repositório privado</span>`
+      : (p.repo ? `<a class="btn line" href="${esc(p.repo)}" target="_blank" rel="noopener">Repositório ${ICON_OUT}</a>` : '');
+    const actions = site + repo;
     return `<li class="card">
       <div class="card-head">
         <span class="tile" aria-hidden="true"><svg viewBox="0 0 48 48">${p.icone || ''}</svg></span>

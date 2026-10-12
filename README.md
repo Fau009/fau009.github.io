@@ -14,16 +14,18 @@ As regras de trabalho e o histórico de decisões ficam no repositório privado 
 
 ## Regra para projetos privados
 
-Projeto privado **não tem nenhum link publicado** neste site: nem do site, nem do repositório. O card mostra só o ícone, a categoria, a descrição e a data de criação, com o aviso "Projeto privado, sem links públicos".
+Projeto com repositório **privado nunca mostra o link do repositório** neste site. No lugar do botão aparece o aviso "Repositório privado".
 
-No `projetos.js`, use `privado: true` com `site: null` e `repo: null`. Mesmo que algum link seja preenchido por engano, a página não o exibe.
+Se o projeto tiver um site no ar (GitHub Pages, Vercel ou domínio próprio), o botão **Abrir site** aparece normalmente. Exemplo: o Clio é privado e mostra o site `clio.coliseunerd.com.br`.
+
+No `projetos.js`, use `privado: true` com `repo: null` e preencha `site` quando houver. Mesmo que o `repo` seja preenchido por engano, a página não o exibe para projetos privados.
 
 ## O que tem no site
 
-- Card de apresentação no topo, com a definição da Central e os números gerais.
+- Card de apresentação no topo, com o texto de boas-vindas e os números gerais.
 - Busca por nome e filtro por categoria: Utilidade, Ferramenta, Entretenimento, Informação, Esporte e Social. O filtro também funciona por link, por exemplo `https://fau009.github.io/#entretenimento`.
 - Ordenação por mais recentes, mais antigos ou nome.
-- Um card por projeto, com ícone, categoria, visibilidade, descrição e data de criação. Projetos públicos também trazem os botões **Abrir site** e **Repositório**.
+- Um card por projeto, com ícone, categoria, visibilidade, descrição e data de criação. Botão **Abrir site** quando o projeto tem site no ar e botão **Repositório** só para projetos públicos.
 - Tema claro e escuro automáticos, seguindo o sistema. Funciona no celular.
 
 ## Como incluir um projeto

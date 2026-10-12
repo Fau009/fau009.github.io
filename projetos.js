@@ -5,9 +5,10 @@
     privado (true ou false), site (link do site no ar, ou null), repo (link do repositório, ou null),
     icone (desenho em SVG, área de 48x48, traço na cor do texto).
 
-  Regra: projeto privado não tem nenhum link publicado aqui (nem site, nem repositório).
-  Use privado: true com site: null e repo: null. O card mostra só ícone, categoria,
-  descrição e data. Mesmo que algum link seja preenchido por engano, o site não o exibe.
+  Regra: projeto com repositório privado nunca mostra o link do repositório.
+  Use privado: true com repo: null. Se o projeto tiver um site no ar (GitHub Pages,
+  Vercel ou domínio próprio), preencha site normalmente: o botão "Abrir site" aparece.
+  Mesmo que o repo seja preenchido por engano, o site não o exibe para projetos privados.
 */
 window.CATEGORIAS = [
   { id: "utilidade",      nome: "Utilidade" },
@@ -45,7 +46,7 @@ window.PROJETOS = [
     categoria: "social",
     criadoEm: "2026-10-06",
     privado: true,
-    site: null,
+    site: "https://clio.coliseunerd.com.br",
     repo: null,
     icone: '<path d="M24 14c-6-4-13-4-18-2v24c5-2 12-2 18 2 6-4 13-4 18-2V12c-5-2-12-2-18 2Z"/><path d="M24 14v24"/>'
   },
