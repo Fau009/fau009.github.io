@@ -5,10 +5,12 @@
     privado (true ou false), site (link do site no ar, ou null), repo (link do repositório, ou null),
     icone (desenho em SVG, área de 48x48, traço na cor do texto).
 
-  Regra: projeto com repositório privado nunca mostra o link do repositório.
-  Use privado: true com repo: null. Se o projeto tiver um site no ar (GitHub Pages,
-  Vercel ou domínio próprio), preencha site normalmente: o botão "Abrir site" aparece.
-  Mesmo que o repo seja preenchido por engano, o site não o exibe para projetos privados.
+  Regras de links (o site aplica mesmo que algum link seja preenchido por engano):
+  - público (privado: false): mostra o site e o repositório que estiverem preenchidos.
+    Para não divulgar o site de um projeto público, use site: null.
+  - privado (privado: true): nunca mostra o repositório; mostra o site quando houver.
+  - sigiloso (sigiloso: true): não mostra nenhum link, nem site nem repositório.
+    Para projetos mais sensíveis (ex.: que lidam com APIs e integrações).
 */
 window.CATEGORIAS = [
   { id: "utilidade",      nome: "Utilidade" },
@@ -17,6 +19,7 @@ window.CATEGORIAS = [
   { id: "informacao",     nome: "Informação" },
   { id: "esporte",        nome: "Esporte" },
   { id: "social",         nome: "Social" },
+  { id: "gestao",         nome: "Gestão" },
 ];
 
 window.PROJETOS = [
@@ -89,5 +92,47 @@ window.PROJETOS = [
     site: "https://fau009.github.io/ping-pong-classic/",
     repo: "https://github.com/Fau009/ping-pong-classic",
     icone: '<circle cx="19" cy="19" r="12"/><path d="m27.5 27.5 10 10" stroke-width="5"/><circle cx="38" cy="12" r="3.5" class="fill"/>'
+  },
+  {
+    nome: "Árvore Genealógica",
+    descricao: "Árvore genealógica interativa e colaborativa: monte a história da família num quadro infinito, conecte pessoas arrastando e veja as edições de todos em tempo real.",
+    categoria: "social",
+    criadoEm: "2026-08-12",
+    privado: false,
+    site: null,
+    repo: "https://github.com/Fau009/arvore-genealogica",
+    icone: '<circle cx="24" cy="10" r="5"/><circle cx="11" cy="37" r="5"/><circle cx="37" cy="37" r="5"/><path d="M24 15v7M11 22h26M11 22v10M37 22v10"/>'
+  },
+  {
+    nome: "Fortuny One",
+    descricao: "Plataforma de controle financeiro para a família, que começou como Finanças do Lar: contas, cartões e faturas, contas recorrentes, empréstimos e financiamentos em um só lugar.",
+    categoria: "utilidade",
+    criadoEm: "2026-05-07",
+    privado: true,
+    site: "https://fortunyone.com.br",
+    repo: null,
+    icone: '<rect x="6" y="14" width="36" height="25" rx="5"/><path d="M30 22h12v10H30a5 5 0 0 1 0-10Z"/><circle cx="31" cy="27" r="1.7" class="fill"/><path d="m12 14 16-7 4 7"/>'
+  },
+  {
+    nome: "Cérebro",
+    descricao: "Portal de gestão de APIs e integrações: reúne organizações, autenticações e rotas num só lugar, acompanha o uso de cada integração e permite montar automações entre elas.",
+    categoria: "gestao",
+    criadoEm: "2026-07-24",
+    privado: true,
+    sigiloso: true,
+    site: null,
+    repo: null,
+    icone: '<circle cx="24" cy="24" r="5.5"/><circle cx="9" cy="10" r="3.5"/><circle cx="39" cy="10" r="3.5"/><circle cx="9" cy="38" r="3.5"/><circle cx="39" cy="38" r="3.5"/><path d="m11.6 12.6 8.2 7.4M36.4 12.6l-8.2 7.4M11.6 35.4l8.2-7.4M36.4 35.4l-8.2-7.4"/>'
+  },
+  {
+    nome: "QualityHub",
+    descricao: "Plataforma de gestão de qualidade e desenvolvimento de equipes: competências, trilhas de treinamento, provas, certificações, planejamento e organograma.",
+    categoria: "gestao",
+    criadoEm: "2026-06-09",
+    privado: true,
+    sigiloso: true,
+    site: null,
+    repo: null,
+    icone: '<path d="M24 6 39 12v11c0 9.5-6.4 16.4-15 19-8.6-2.6-15-9.5-15-19V12Z"/><path d="m17 24 5 5 9-10"/>'
   },
 ];

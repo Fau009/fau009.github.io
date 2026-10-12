@@ -256,15 +256,21 @@ footer { border-top: 1.5px solid var(--line); }
   }
 
   function cardHTML(p) {
-    // Projeto privado: o link do repositório nunca é exibido, mesmo que esteja preenchido.
-    // O link do site aparece normalmente quando existe.
-    const site = p.site
-      ? `<a class="btn solid" href="${esc(p.site)}" target="_blank" rel="noopener">Abrir site ${ICON_OUT}</a>`
-      : `<span class="btn off">Site em breve</span>`;
-    const repo = p.privado
-      ? `<span class="btn off">${ICON_LOCK} Repositório privado</span>`
-      : (p.repo ? `<a class="btn line" href="${esc(p.repo)}" target="_blank" rel="noopener">Repositório ${ICON_OUT}</a>` : '');
-    const actions = site + repo;
+    // Regras de links:
+    // - sigiloso: nenhum link é exibido (nem site, nem repositório), mesmo que estejam preenchidos.
+    // - privado: o link do repositório nunca é exibido; o do site aparece quando existe.
+    // - público: aparecem os links que estiverem preenchidos.
+    let actions;
+    if (p.sigiloso) {
+      actions = `<span class="btn off">${ICON_LOCK} Acesso restrito</span>`;
+    } else {
+      const site = p.site
+        ? `<a class="btn solid" href="${esc(p.site)}" target="_blank" rel="noopener">Abrir site ${ICON_OUT}</a>` : '';
+      const repo = p.privado
+        ? `<span class="btn off">${ICON_LOCK} Repositório privado</span>`
+        : (p.repo ? `<a class="btn line" href="${esc(p.repo)}" target="_blank" rel="noopener">Repositório ${ICON_OUT}</a>` : '');
+      actions = site + repo;
+    }
     return `<li class="card">
       <div class="card-head">
         <span class="tile" aria-hidden="true"><svg viewBox="0 0 48 48">${p.icone || ''}</svg></span>
