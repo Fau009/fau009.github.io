@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700;800&family=Josefin+Slab:wght@400;600&family=Manrope:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: cabeçalho com a marca; card de apresentação invertido no topo (o símbolo da marca aparece só no logotipo); barra de busca e filtros; grade de cards de projeto. Preto e branco da marca Full Solutions, nos dois temas. */
+/* Layout: cabeçalho com a marca; card de apresentação invertido no topo (símbolo da marca no logotipo e no rodapé, nunca no card); barra de busca e filtros; grade de cards de projeto. Preto e branco da marca Full Solutions, nos dois temas. */
 :root {
   --bg: #ffffff;
   --surface: #ffffff;
@@ -157,6 +157,7 @@ a { color: inherit; }
 footer { border-top: 1.5px solid var(--line); }
 .foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding-block: 22px 28px; }
 .foot-brand { display: flex; align-items: center; gap: 12px; }
+.foot-brand .brand-mark { --src: url("marca/simbolo.png"); width: 26px; aspect-ratio: 224 / 256; color: var(--fg); }
 .foot-brand span { font-family: var(--slab); font-size: .78rem; letter-spacing: .28em; text-transform: uppercase; }
 .foot small { color: var(--muted); font-size: .8rem; }
 
@@ -208,7 +209,7 @@ footer { border-top: 1.5px solid var(--line); }
 
 <footer>
   <div class="wrap foot">
-    <div class="foot-brand"><span>Full Solutions · Make your future yourself</span></div>
+    <div class="foot-brand"><span class="brand-mark" aria-hidden="true"></span><span>Make your future yourself</span></div>
     <small id="updated"></small>
   </div>
 </footer>
