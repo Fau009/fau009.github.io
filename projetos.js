@@ -24,6 +24,16 @@ window.CATEGORIAS = [
 
 window.PROJETOS = [
   {
+    nome: "Jogo da Velha Supremo",
+    descricao: "Coletânea de 11 jogos da velha diferentes (Clássico, Supremo/Ultimate, Gomoku, Lig4, Numérico, Ordem e Caos, BIG e mais). Vários jogadores na sessão, placar geral, histórico e tudo salvo no navegador. Melhor passando o celular.",
+    categoria: "entretenimento",
+    criadoEm: "2026-10-15",
+    privado: false,
+    site: "https://fau009.github.io/jogo-da-velha-supremo/",
+    repo: "https://github.com/Fau009/jogo-da-velha-supremo",
+    icone: '<rect x="7" y="7" width="34" height="34" rx="4"/><path d="M19 9v30M29 9v30M9 19h30M9 29h30"/>'
+  },
+  {
     nome: "Botão Surpresa",
     descricao: "Pegadinha do botão \"Não Aperte\": a página abre direto no botão proibido, a contagem esquenta com som e flashes, e no fim vem um de 10 sustos (tela azul, vírus, autodestruição…) seguido do \"Te peguei!\". Melhor no celular, com som e vibração.",
     categoria: "entretenimento",
