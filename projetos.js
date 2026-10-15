@@ -24,6 +24,16 @@ window.CATEGORIAS = [
 
 window.PROJETOS = [
   {
+    nome: "Botão Surpresa",
+    descricao: "Pegadinha do botão \"Não Aperte\": a página abre direto no botão proibido, a contagem esquenta com som e flashes, e no fim vem um de 10 sustos (tela azul, vírus, autodestruição…) seguido do \"Te peguei!\". Melhor no celular, com som e vibração.",
+    categoria: "entretenimento",
+    criadoEm: "2026-10-15",
+    privado: false,
+    site: "https://fau009.github.io/botao-surpresa/",
+    repo: "https://github.com/Fau009/botao-surpresa",
+    icone: '<circle cx="24" cy="24" r="14"/><circle cx="24" cy="24" r="14" fill="none"/><path d="M24 10a14 14 0 1 0 14 14"/><circle cx="24" cy="24" r="5" class="fill"/>'
+  },
+  {
     nome: "A Resistência",
     descricao: "O clássico jogo de blefe e dedução social para 5 a 10 pessoas, jogado passando um único celular: identidades secretas, votação, missões e placar sempre à vista. Tem modo clássico e modo simples.",
     categoria: "entretenimento",
